@@ -1,5 +1,8 @@
-﻿using HandTelegram.Bot.Worker;
+﻿using HandTelegram.Bot.Infra.CrossCutting.IoC;
+using HandTelegram.Bot.Infra.Data;
+using HandTelegram.Bot.Worker;
 using HandTelegram.Bot.Worker.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -15,10 +18,10 @@ namespace HandTelegram.Bot
         public static async Task Main()
         {
             var builder = new ConfigurationBuilder();
-            BuildConfig(builder);
+            var configuration = BuildConfig(builder);
 
             Log.Logger = new LoggerConfiguration()
-                .ReadFrom.Configuration(builder.Build())
+                .ReadFrom.Configuration(configuration)
                 .Enrich.FromLogContext()
                 .WriteTo.Console()
                 .CreateLogger();
@@ -30,22 +33,34 @@ namespace HandTelegram.Bot
                 {
                     services.AddTransient<IExampleService, ExampleService>();
                     services.AddTransient<IHandTelegramWorker, HandTelegramWorker>();
+                    services.AddMasterDataDbContext(configuration);
                 })
                 .UseSerilog()
                 .Build();
+
+            using var serviceScope = host.Services.GetRequiredService<IServiceScopeFactory>().CreateScope();
+            using var context = serviceScope.ServiceProvider.GetService<MasterDataDbContext>();
+
+            context
+                .Database
+                .Migrate();
 
             var svc = ActivatorUtilities.CreateInstance<HandTelegramWorker>(host.Services);
             await svc.StartListen();
         }
 
-        private static void BuildConfig(IConfigurationBuilder builder)
+        private static IConfiguration BuildConfig(IConfigurationBuilder builder)
         {
-            builder.SetBasePath(Directory.GetCurrentDirectory())
+            var configuration = builder.SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIROMENT") ?? "Production"}.json", optional: true)
-                .AddEnvironmentVariables();
+                .AddEnvironmentVariables()
+                .Build();
 
             Environment.SetEnvironmentVariable("TelegramBot:Key", Environment.GetEnvironmentVariable("var_telegram_bot_key"));
+            Environment.SetEnvironmentVariable("Postgres:ConnString", Environment.GetEnvironmentVariable("var_postgres_db_conn_string"));
+
+            return configuration;
         }
     }
 }
