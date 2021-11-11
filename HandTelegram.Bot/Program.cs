@@ -33,7 +33,7 @@ namespace HandTelegram.Bot
                 {
                     services.AddTransient<IExampleService, ExampleService>();
                     services.AddTransient<IHandTelegramWorker, HandTelegramWorker>();
-                    services.AddMasterDataDbContext(configuration);
+                    services.AddMasterDataDbContext();
                 })
                 .UseSerilog()
                 .Build();
