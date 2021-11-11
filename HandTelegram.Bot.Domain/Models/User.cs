@@ -1,6 +1,8 @@
-﻿namespace HandTelegram.Bot.Domain
+﻿using HandTelegram.Bot.Domain.Models.Common;
+
+namespace HandTelegram.Bot.Domain.Models
 {
-    public class User
+    public class User : BaseEntity
     {
         public long Id { get; private set; }
         public string Username { get; private set; }
@@ -8,13 +10,13 @@
         public string LastName { get; private set; }
         public bool Admin { get; private set; }
 
-        public User(long id, string username, string firstName, string lastName, bool admin)
+        public User(long id, string username, string firstName, string lastName)
         {
             Id = id;
             Username = username;
             FirstName = firstName;
             LastName = lastName;
-            Admin = admin;
+            Admin = false;
         }
     }
 }

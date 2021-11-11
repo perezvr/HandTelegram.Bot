@@ -1,4 +1,7 @@
-﻿using HandTelegram.Bot.Services;
+﻿using HandTelegram.Bot.Domain.Interfaces.Repository;
+using HandTelegram.Bot.Handlers.Interfaces;
+using HandTelegram.Bot.Services;
+using HandTelegram.Bot.Services.Interfaces;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -9,9 +12,16 @@ using Telegram.Bot.Types.Enums;
 
 namespace HandTelegram.Bot.Handlers
 {
-    public class NotificationHandler
+    public class NotificationHandler : INotificationHandler
     {
-        public static Task HandleErrorAsync(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken)
+        private readonly IMessageService _messageService;
+
+        public NotificationHandler(IMessageService messageService)
+        {
+            _messageService = messageService;
+        }
+
+        public Task HandleErrorAsync(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken)
         {
             var ErrorMessage = exception switch
             {
@@ -23,11 +33,11 @@ namespace HandTelegram.Bot.Handlers
             return Task.CompletedTask;
         }
 
-        public static async Task HandleNewNotificationAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
+        public async Task HandleNewNotificationAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
         {
             var handler = update.Type switch
             {
-                UpdateType.Message => MessageService.MessageReceived(botClient, update.Message, cancellationToken),
+                UpdateType.Message => _messageService.MessageReceived(botClient, update.Message),
                 _ => UnknownUpdateHandlerAsync(botClient, update)
             };
 
@@ -41,7 +51,7 @@ namespace HandTelegram.Bot.Handlers
             }
         }
 
-        private static Task UnknownUpdateHandlerAsync(ITelegramBotClient botClient, Update update)
+        private Task UnknownUpdateHandlerAsync(ITelegramBotClient botClient, Update update)
         {
             Console.WriteLine($"Unknown update type: {update.Type}");
             return Task.CompletedTask;

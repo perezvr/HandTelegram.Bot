@@ -1,4 +1,5 @@
 ﻿using HandTelegram.Bot.Domain;
+using HandTelegram.Bot.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace HandTelegram.Bot.Infra.Data

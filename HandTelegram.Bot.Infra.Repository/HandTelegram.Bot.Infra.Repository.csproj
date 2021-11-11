@@ -4,4 +4,9 @@
     <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HandTelegram.Bot.Domain\HandTelegram.Bot.Domain.csproj" />
+    <ProjectReference Include="..\HandTelegram.Bot.Infra\HandTelegram.Bot.Infra.Data.csproj" />
+  </ItemGroup>
+
 </Project>

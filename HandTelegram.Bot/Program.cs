@@ -1,11 +1,18 @@
-﻿using HandTelegram.Bot.Infra.CrossCutting.IoC;
+﻿using HandTelegram.Bot.Domain.Interfaces.Repository;
+using HandTelegram.Bot.Handlers;
+using HandTelegram.Bot.Handlers.Interfaces;
+using HandTelegram.Bot.Infra.CrossCutting.IoC;
 using HandTelegram.Bot.Infra.Data;
+using HandTelegram.Bot.Infra.Repository;
+using HandTelegram.Bot.Services;
+using HandTelegram.Bot.Services.Interfaces;
 using HandTelegram.Bot.Worker;
 using HandTelegram.Bot.Worker.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Serilog;
 using System;
 using System.IO;
@@ -23,7 +30,6 @@ namespace HandTelegram.Bot
             Log.Logger = new LoggerConfiguration()
                 .ReadFrom.Configuration(configuration)
                 .Enrich.FromLogContext()
-                .WriteTo.Console()
                 .CreateLogger();
 
             Log.Logger.Information("Application starting");
@@ -31,8 +37,11 @@ namespace HandTelegram.Bot
             var host = Host.CreateDefaultBuilder()
                 .ConfigureServices((context, services) =>
                 {
-                    services.AddTransient<IExampleService, ExampleService>();
                     services.AddTransient<IHandTelegramWorker, HandTelegramWorker>();
+                    services.AddTransient<INotificationHandler, NotificationHandler>();
+                    services.AddTransient<IMessageService, MessageService>();
+                    services.AddTransient<IExampleService, ExampleService>();
+                    services.AddTransient<IUserRepository, UserRepository>();
                     services.AddMasterDataDbContext();
                 })
                 .UseSerilog()
@@ -52,8 +61,7 @@ namespace HandTelegram.Bot
         private static IConfiguration BuildConfig(IConfigurationBuilder builder)
         {
             var configuration = builder.SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIROMENT") ?? "Production"}.json", optional: true)
+                .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIROMENT") ?? "production"}.json", optional: true)
                 .AddEnvironmentVariables()
                 .Build();
 

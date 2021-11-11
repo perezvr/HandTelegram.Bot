@@ -20,7 +20,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HandTelegram.Bot.Domain\HandTelegram.Bot.Domain.csproj" />
-    <ProjectReference Include="..\HandTelegram.Bot.Infra.Repository\HandTelegram.Bot.Infra.Repository.csproj" />
   </ItemGroup>
 
 </Project>

@@ -24,11 +24,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HandTelegram.Bot.Domain\HandTelegram.Bot.Domain.csproj" />
     <ProjectReference Include="..\HandTelegram.Bot.Infra.CrossCutting.IoC\HandTelegram.Bot.Infra.CrossCutting.IoC.csproj" />
+    <ProjectReference Include="..\HandTelegram.Bot.Infra.Repository\HandTelegram.Bot.Infra.Repository.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="appsettings.json">
+    <None Update="appsettings.dev.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="appsettings.production.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

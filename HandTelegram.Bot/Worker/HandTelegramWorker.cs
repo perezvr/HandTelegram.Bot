@@ -1,4 +1,5 @@
 ﻿using HandTelegram.Bot.Handlers;
+using HandTelegram.Bot.Handlers.Interfaces;
 using HandTelegram.Bot.Worker.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -14,21 +15,24 @@ namespace HandTelegram.Bot.Worker
     {
         private readonly IConfiguration _configuration;
         private readonly ILogger<HandTelegramWorker> _logger;
+        private readonly INotificationHandler _notificationHandler;
 
-        public HandTelegramWorker(IConfiguration configuration, ILogger<HandTelegramWorker> logger)
+        public HandTelegramWorker(
+            IConfiguration configuration, 
+            ILogger<HandTelegramWorker> logger,
+            INotificationHandler notificationHandler)
         {
             _configuration = configuration;
             _logger = logger;
+            _notificationHandler = notificationHandler;
         }
 
         public async Task StartListen()
         {
             var bot = new TelegramBotClient(_configuration.GetValue<string>("TelegramBot:Key"));
 
-            var myUser = await bot.GetMeAsync();
-
             using var cts = new CancellationTokenSource();
-            bot.StartReceiving(new DefaultUpdateHandler(NotificationHandler.HandleNewNotificationAsync, NotificationHandler.HandleErrorAsync), cts.Token);
+            bot.StartReceiving(new DefaultUpdateHandler(_notificationHandler.HandleNewNotificationAsync, _notificationHandler.HandleErrorAsync), cts.Token);
 
             _logger.LogInformation("Listener started.");
 

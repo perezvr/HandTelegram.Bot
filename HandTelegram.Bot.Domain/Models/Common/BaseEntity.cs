@@ -1,4 +1,4 @@
-﻿namespace HandTelegram.Bot.Domain.Common
+﻿namespace HandTelegram.Bot.Domain.Models.Common
 {
     public abstract class BaseEntity
     {
