@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30804.86
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HandTelegram.Bot", "HandTelegram.Bot\HandTelegram.Bot.csproj", "{07C3FE49-5528-4153-A328-D3FA5C46C565}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HandTelegram.Bot.Domain", "HandTelegram.Bot.Domain\HandTelegram.Bot.Domain.csproj", "{6C65D0BB-1DC6-4CA2-81CA-14CD2149A40B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HandTelegram.Bot.Infra.Data", "HandTelegram.Bot.Infra\HandTelegram.Bot.Infra.Data.csproj", "{ADC7CD7D-9417-4B7B-B709-DFB9CB492A4D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HandTelegram.Bot.Infra.Data", "HandTelegram.Bot.Infra.Data\HandTelegram.Bot.Infra.Data.csproj", "{ADC7CD7D-9417-4B7B-B709-DFB9CB492A4D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HandTelegram.Bot.Infra.Repository", "HandTelegram.Bot.Infra.Repository\HandTelegram.Bot.Infra.Repository.csproj", "{A472E679-651F-44AC-B4F9-F2382D1F77E6}"
 EndProject
@@ -23,7 +23,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.1 - Data", "4.1 - Data", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.2 - CrossCutting", "4.2 - CrossCutting", "{FD8C6EEB-C7BD-4A3B-B624-63816B801BE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandTelegram.Bot.Infra.CrossCutting.IoC", "HandTelegram.Bot.Infra.CrossCutting.IoC\HandTelegram.Bot.Infra.CrossCutting.IoC.csproj", "{31A5C611-1218-4DCD-9A2F-1121F157C1B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HandTelegram.Bot.Infra.CrossCutting.IoC", "HandTelegram.Bot.Infra.CrossCutting.IoC\HandTelegram.Bot.Infra.CrossCutting.IoC.csproj", "{31A5C611-1218-4DCD-9A2F-1121F157C1B6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.3 - Integrations", "4.3 - Integrations", "{03E31FE0-3AE5-4041-A48D-D1280C9432E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandTelegram.Bot.Infra.Integrations", "HandTelegram.Bot.Infra.Integrations\HandTelegram.Bot.Infra.Integrations.csproj", "{29C56BB9-4C35-4D0D-860A-47ED2C943ED9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +55,10 @@ Global
 		{31A5C611-1218-4DCD-9A2F-1121F157C1B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31A5C611-1218-4DCD-9A2F-1121F157C1B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31A5C611-1218-4DCD-9A2F-1121F157C1B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29C56BB9-4C35-4D0D-860A-47ED2C943ED9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29C56BB9-4C35-4D0D-860A-47ED2C943ED9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29C56BB9-4C35-4D0D-860A-47ED2C943ED9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29C56BB9-4C35-4D0D-860A-47ED2C943ED9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,6 +71,8 @@ Global
 		{BF950AEE-430B-47D5-BAF0-00951920651F} = {07B7BBE5-49CB-420F-B0F8-74F00EDEDD2C}
 		{FD8C6EEB-C7BD-4A3B-B624-63816B801BE6} = {07B7BBE5-49CB-420F-B0F8-74F00EDEDD2C}
 		{31A5C611-1218-4DCD-9A2F-1121F157C1B6} = {FD8C6EEB-C7BD-4A3B-B624-63816B801BE6}
+		{03E31FE0-3AE5-4041-A48D-D1280C9432E5} = {07B7BBE5-49CB-420F-B0F8-74F00EDEDD2C}
+		{29C56BB9-4C35-4D0D-860A-47ED2C943ED9} = {03E31FE0-3AE5-4041-A48D-D1280C9432E5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F2BF289F-ABB8-4060-88DD-946A6F0BA819}
