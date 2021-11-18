@@ -62,7 +62,6 @@ namespace HandTelegram.Bot.Services
                 default:
                     break;
             }
-
         }
     }
 }
