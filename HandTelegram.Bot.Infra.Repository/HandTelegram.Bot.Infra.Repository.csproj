@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HandTelegram.Bot.Domain\HandTelegram.Bot.Domain.csproj" />
-    <ProjectReference Include="..\HandTelegram.Bot.Infra\HandTelegram.Bot.Infra.Data.csproj" />
+    <ProjectReference Include="..\HandTelegram.Bot.Infra.Data\HandTelegram.Bot.Infra.Data.csproj" />
   </ItemGroup>
 
 </Project>

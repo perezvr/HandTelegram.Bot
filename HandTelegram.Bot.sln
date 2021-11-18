@@ -13,8 +13,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HandTelegram.Bot.Infra.Repo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Worker", "1 - Worker", "{2EF85ADC-85D4-4389-A109-E7EECA86D653}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Application", "2 - Application", "{F349AC8F-4D81-4DB1-A487-FD98BBAC40CC}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Domain", "3 - Domain", "{996B9778-3682-4DFD-85CB-D9E9CAA6AC10}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Infrastructure", "4 - Infrastructure", "{07B7BBE5-49CB-420F-B0F8-74F00EDEDD2C}"
@@ -27,7 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HandTelegram.Bot.Infra.Cros
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.3 - Integrations", "4.3 - Integrations", "{03E31FE0-3AE5-4041-A48D-D1280C9432E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandTelegram.Bot.Infra.Integrations", "HandTelegram.Bot.Infra.Integrations\HandTelegram.Bot.Infra.Integrations.csproj", "{29C56BB9-4C35-4D0D-860A-47ED2C943ED9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HandTelegram.Bot.Infra.Integrations", "HandTelegram.Bot.Infra.Integrations\HandTelegram.Bot.Infra.Integrations.csproj", "{29C56BB9-4C35-4D0D-860A-47ED2C943ED9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

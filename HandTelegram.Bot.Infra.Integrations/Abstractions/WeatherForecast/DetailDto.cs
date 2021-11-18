@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace HandTelegram.Bot.Infra.Integrations.Abstractions.GetWeather
+namespace HandTelegram.Bot.Infra.Integrations.Abstractions.WeatherForecast
 {
-    public class GetWeatherResponseDto
+    public class DetailDto
     {
         public int temp { get; set; }
         public string date { get; set; }
@@ -25,4 +21,5 @@ namespace HandTelegram.Bot.Infra.Integrations.Abstractions.GetWeather
         public string city_name { get; set; }
         public List<ForecastDto> forecast { get; set; }
     }
+
 }

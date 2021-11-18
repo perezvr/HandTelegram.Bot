@@ -1,6 +1,9 @@
 ﻿using HandTelegram.Bot.Domain.Interfaces.Repository;
+using HandTelegram.Bot.Services.CommandHandlers.Interfaces;
 using HandTelegram.Bot.Services.Interfaces;
 using Microsoft.Extensions.Logging;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Types;
@@ -11,13 +14,16 @@ namespace HandTelegram.Bot.Services
     {
         private readonly IUserRepository _userRepository;
         private readonly ILogger _logger;
+        private readonly ICommandHandler _commandHandler;
 
         public MessageService(
             IUserRepository userRepository,
-            ILogger<MessageService> logger)
+            ILogger<MessageService> logger,
+            ICommandHandler commandHandler)
         {
             _userRepository = userRepository;
             _logger = logger;
+            _commandHandler = commandHandler;
         }
 
         public async Task MessageReceived(
@@ -30,16 +36,28 @@ namespace HandTelegram.Bot.Services
             if (user == null)
                 user = _userRepository
                     .Add(new Domain.Models.User(
-                        message.From.Id, 
-                        message.From.Username, 
-                        message.From.FirstName, 
+                        message.From.Id,
+                        message.From.Username,
+                        message.From.FirstName,
                         message.From.LastName));
 
             _logger
                 .LogInformation($"Received message: {message.Text} from { message.From.Id}");
 
-            await botClient
-                .SendTextMessageAsync(message.Chat.Id, "Oi sumida");
+            await HandleMessage(message);
+
+            //await botClient
+            //    .SendTextMessageAsync(message.Chat.Id, "Oi sumida");
+        }
+
+        private async Task HandleMessage(Message message)
+        {
+            var command = message.Text.Split(" ").First();
+            var messageText = message.Text.Substring(message.Text.IndexOf(" ") + 1);
+
+            if (command == "/forecast")
+                await _commandHandler.ForecacastCommandHandler(message, messageText);
+
         }
     }
 }

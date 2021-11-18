@@ -3,8 +3,12 @@ using HandTelegram.Bot.Handlers;
 using HandTelegram.Bot.Handlers.Interfaces;
 using HandTelegram.Bot.Infra.CrossCutting.IoC;
 using HandTelegram.Bot.Infra.Data;
+using HandTelegram.Bot.Infra.Integrations.Services;
+using HandTelegram.Bot.Infra.Integrations.Services.Interfaces;
 using HandTelegram.Bot.Infra.Repository;
 using HandTelegram.Bot.Services;
+using HandTelegram.Bot.Services.CommandHandlers;
+using HandTelegram.Bot.Services.CommandHandlers.Interfaces;
 using HandTelegram.Bot.Services.Interfaces;
 using HandTelegram.Bot.Worker;
 using HandTelegram.Bot.Worker.Interfaces;
@@ -12,7 +16,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Serilog;
 using System;
 using System.IO;
@@ -42,6 +45,8 @@ namespace HandTelegram.Bot
                     services.AddTransient<IMessageService, MessageService>();
                     services.AddTransient<IExampleService, ExampleService>();
                     services.AddTransient<IUserRepository, UserRepository>();
+                    services.AddTransient<ICommandHandler, CommandHandler>();
+                    services.AddTransient<IGoodMorningApiIntegrationService, GoodMorningApiIntegrationService>();
                     services.AddMasterDataDbContext();
                 })
                 .UseSerilog()

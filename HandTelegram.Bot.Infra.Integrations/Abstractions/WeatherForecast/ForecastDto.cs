@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HandTelegram.Bot.Infra.Integrations.Abstractions.GetWeather
+﻿namespace HandTelegram.Bot.Infra.Integrations.Abstractions.WeatherForecast
 {
     public class ForecastDto
     {
