@@ -54,8 +54,14 @@ namespace HandTelegram.Bot.Services
             var command = message.Text.Split(" ").First();
             var messageText = message.Text.Substring(message.Text.IndexOf(" ") + 1);
 
-            if (command == "/forecast")
+            switch (command)
+            {
+                case "/forecast":
                 await _commandHandler.ForecacastCommandHandler(message, messageText);
+                    break;
+                default:
+                    break;
+            }
 
         }
     }
