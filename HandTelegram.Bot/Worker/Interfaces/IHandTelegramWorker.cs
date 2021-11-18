@@ -4,6 +4,6 @@ namespace HandTelegram.Bot.Worker.Interfaces
 {
     public interface IHandTelegramWorker
     {
-        Task StartListen();
+        void StartListen();
     }
 }

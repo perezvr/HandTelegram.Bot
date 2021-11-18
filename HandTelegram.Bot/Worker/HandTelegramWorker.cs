@@ -1,5 +1,4 @@
-﻿using HandTelegram.Bot.Handlers;
-using HandTelegram.Bot.Handlers.Interfaces;
+﻿using HandTelegram.Bot.Handlers.Interfaces;
 using HandTelegram.Bot.Worker.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -27,7 +26,7 @@ namespace HandTelegram.Bot.Worker
             _notificationHandler = notificationHandler;
         }
 
-        public async Task StartListen()
+        public void StartListen()
         {
             var bot = new TelegramBotClient(_configuration.GetValue<string>("TelegramBot:Key"));
 

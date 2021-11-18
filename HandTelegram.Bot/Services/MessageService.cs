@@ -3,7 +3,6 @@ using HandTelegram.Bot.Services.CommandHandlers.Interfaces;
 using HandTelegram.Bot.Services.Interfaces;
 using Microsoft.Extensions.Logging;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Types;

@@ -1,6 +1,4 @@
-﻿using HandTelegram.Bot.Domain.Interfaces.Repository;
-using HandTelegram.Bot.Handlers.Interfaces;
-using HandTelegram.Bot.Services;
+﻿using HandTelegram.Bot.Handlers.Interfaces;
 using HandTelegram.Bot.Services.Interfaces;
 using System;
 using System.Threading;

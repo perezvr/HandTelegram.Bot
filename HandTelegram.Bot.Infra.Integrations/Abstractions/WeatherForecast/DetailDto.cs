@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace HandTelegram.Bot.Infra.Integrations.Abstractions.WeatherForecast
+﻿namespace HandTelegram.Bot.Infra.Integrations.Abstractions.WeatherForecast
 {
     public class DetailDto
     {
